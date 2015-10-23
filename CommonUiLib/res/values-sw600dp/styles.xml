@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+	<style name="DrawerListTextStyle">
+	    <item name="android:textAppearance">?android:attr/textAppearanceMediumInverse</item>
+	</style>
+	
+	<style name="SearchResultTextViewStyle">
+	    <item name="android:textAppearance">?android:attr/textAppearanceMediumInverse</item>
+	</style>
+	
+	<style name="TwoLineListItem" parent="EngravedText">
+	    <item name="android:textAppearance">?android:attr/textAppearanceMedium</item>		
+	</style>
+	
+</resources>

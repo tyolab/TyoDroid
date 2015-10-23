@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <style name="CardStyle">
+        <item name="android:background">@drawable/card_bg_light_small_selectable</item>
+    </style>
+    
+    <style name="CardStyleSelected">
+        <item name="android:background">@drawable/card_bg_light_small_selected</item>
+    </style>
+    
+    <style name="CardStyleNormal">
+        <item name="android:background">@drawable/card_bg_light_small</item>
+    </style>  
+    
+</resources>

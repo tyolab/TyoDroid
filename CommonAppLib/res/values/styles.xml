@@ -1,0 +1,44 @@
+<resources>
+
+    <!--
+        Base application theme, dependent on API level. This theme is replaced
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+    -->
+    <style name="AppBaseTheme" parent="@android:style/Theme">
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        -->
+    </style>
+
+    <!-- Application theme. -->
+    <style name="AppTheme" parent="AppBaseTheme">
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style>
+    
+    <style name="CommonTheme.Light" parent="@android:style/Theme.Light" />
+    
+    <style name="HeaderStyle">
+        <item name="android:windowBackground">@color/header_background_color</item>
+    	<item name="android:colorBackground">@color/header_background_color</item>
+    	<item name="android:background">@color/header_background_color</item>
+    </style>
+    
+    <style name="BodyStyle">
+        <item name="android:windowBackground">@color/body_background_color</item>
+    	<item name="android:colorBackground">@color/body_background_color</item>
+    	<item name="android:background">@color/body_background_color</item>
+    </style> 
+    
+    <style name="FooterStyle">
+        <item name="android:windowBackground">@color/footer_background_color</item>
+    	<item name="android:colorBackground">@color/footer_background_color</item>
+    	<item name="android:background">@color/footer_background_color</item>
+    </style>    
+    
+    <style name="SuggestionTextStyle">
+        <item name="android:textAppearance">?android:attr/textAppearanceMediumInverse</item>
+    </style>
+
+</resources>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+ 
+	<!-- Bottom 2dp Shadow -->
+	<!-- 
+	<item android:left="1px" android:top="5px" android:right="1px" android:bottom="5px">
+		<shape android:shape="rectangle">	 
+		<solid android:color="#00dbdbdb" />
+		<corners android:radius="4dp" /> 
+		</shape>
+	</item>
+	
+	<item android:left="1px" android:top="5px" android:right="1px" android:bottom="4px">
+		<shape android:shape="rectangle">	 
+		<solid android:color="#10dbdbdb" />
+		<corners android:radius="4dp" /> 
+		</shape>
+	</item>
+	
+	<item android:left="1px" android:top="5px" android:right="1px" android:bottom="3px">
+		<shape android:shape="rectangle">	 
+		<solid android:color="#20dbdbdb" />
+		<corners android:radius="4dp" /> 
+		</shape>
+	</item>
+	 -->
+	 
+	<item android:left="1px" android:top="2px" android:right="1px" android:bottom="2px">
+		<shape android:shape="rectangle">	 
+		<solid android:color="#30dbdbdb" />
+		<corners android:radius="4dp" /> 
+		</shape>
+	</item>
+	
+	<item android:left="1px" android:top="2px" android:right="1px" android:bottom="1px">
+		<shape android:shape="rectangle">	 
+		<solid android:color="#50dbdbdb" />
+		<corners android:radius="4dp" /> 
+		</shape>
+	</item>
+	
+	<!--  no frame -->
+	 <!-- frame
+	<item android:bottom="5px" android:left="4px" android:right="4px" >
+		<shape android:shape="rectangle">	 
+		<stroke android:width="3dp" android:height="3dp" android:color="#385D8A" /> 
+		<corners android:radius="5dp" /> 
+		</shape>
+	</item>
+	 -->
+	 
+	<!-- White Top color -->
+	<item android:top="2px" android:left="1px" android:right="1px" android:bottom="3px" > 
+		<shape android:shape="rectangle">		 
+		<solid android:color="@color/white" />
+		<corners android:radius="4dp" />		 		 
+		</shape>	 
+	</item>
+</layer-list>

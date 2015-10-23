@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>   
+    
+    <dimen name="padding_small">8dp</dimen>
+    <dimen name="padding_medium">8dp</dimen>
+    <dimen name="padding_large">16dp</dimen>
+    
+    <dimen name="toolbar_icon_width">28dp</dimen>
+    <dimen name="toolbar_icon_height">30dp</dimen>
+    
+    <dimen name="main_view_margin_left">12dp</dimen>
+    <dimen name="main_view_margin_right">12dp</dimen>
+    
+    <!-- HEADER -->
+    <dimen name="header_margin_top">8dp</dimen>
+    <dimen name="header_margin_left">0dp</dimen>
+    <dimen name="header_margin_right">0dp</dimen>
+    
+    <!-- FOOTER -->
+    
+    <dimen name="abstract_screen_margin_top">4dp</dimen>
+	<dimen name="abstract_screen_margin_bottom">4dp</dimen>
+		
+	<dimen name="abstract_screen_margin_left">0dp</dimen>
+	<dimen name="abstract_screen_margin_right">0dp</dimen>
+	
+	<dimen name="abstract_scrollview_margin_top">2dp</dimen>
+	<dimen name="abstract_scrollview_margin_bottom">6dp</dimen>
+	<dimen name="abstract_scrollview_padding_bottom">10dp</dimen>
+	
+	<dimen name="wikie_talkie_button_margin_top">-20dp</dimen>
+	
+	<dimen name="drawer_right_list_item_padding_left">16dp</dimen>
+	<dimen name="drawer_right_list_item_padding_right">8dp</dimen>
+	<dimen name="drawer_left_list_item_padding_left">16dp</dimen>
+	<dimen name="drawer_left_list_item_padding_right">8dp</dimen>
+	
+	<dimen name="drawer_left_checkbox_online_mode_margin_left">12dp</dimen>
+	
+	<dimen name="drawer_header_height">30dp</dimen>
+	
+	<dimen name="drawer_left_button_height">32dp</dimen>
+	
+	<dimen name="donation_view_padding">16dp</dimen>
+	
+	<dimen name="drawer_left_width">280dp</dimen>
+	<dimen name="drawer_right_width">280dp</dimen>
+	
+	<dimen name="splash_screen_logo_width">56dp</dimen>
+	<dimen name="splash_screen_logo_height">56dp</dimen>
+	
+	<dimen name="login_button_width">64dp</dimen>
+	<dimen name="login_button_height">64dp</dimen>
+	
+	<dimen name="login_button_padding_left">25dp</dimen>
+	<dimen name="login_button_padding_right">25dp</dimen>
+	
+	<dimen name="article_menu_margin_right">-10dp</dimen>
+	
+	<!--  Font size -->
+	<dimen name="drawer_left_button_font_size">16sp</dimen>
+	<dimen name="drawer_text_font_size">16sp</dimen>
+	
+	<dimen name="info_text_font_size">16sp</dimen>
+	<dimen name="abstract_title_font_size">22sp</dimen>
+	
+	<dimen name="search_snippet_text_title_font_size">16sp</dimen>
+	
+	<dimen name="actionbar_title_font_size">18sp</dimen>
+	<dimen name="actionbar_text_font_size">16sp</dimen>
+	
+	<dimen name="tab_information_text_font_size">16sp</dimen>
+	
+	<dimen name="splash_screen_slang_font_size">20sp</dimen>
+		
+	<dimen name="image_text_list_cell_width">48dp</dimen>
+	<dimen name="image_text_list_cell_height">48dp</dimen>
+		
+	<dimen name="image_text_list_cell_for_widget_text_size">18sp</dimen>
+	
+	<!--  Sliding Panel -->
+	<dimen name="sliding_panel_margin_top">1dp</dimen>
+	<dimen name="sliding_panel_tip_height">16dp</dimen>
+	
+	<!-- Search Result List -->
+	<dimen name="search_result_list_margin">1dp</dimen>
+	<dimen name="search_result_list_margin_top">1dp</dimen>
+	<dimen name="search_result_list_padding_left">5dp</dimen>
+	<dimen name="search_result_list_padding_right">2dp</dimen>
+	<dimen name="search_result_list_padding_top">10dp</dimen>
+	<dimen name="search_result_list_padding_bottom">10dp</dimen>    
+</resources>
