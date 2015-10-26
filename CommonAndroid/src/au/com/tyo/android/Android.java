@@ -1,5 +1,9 @@
 package au.com.tyo.android;
 
+/**
+ * @author Eric Tang <eric.tang@tyo.com.au>
+ */
+
 public interface Android {
 	
 	public static final String OBB_NAME_TEMPLATE = "%s.%d.%s.obb"; 

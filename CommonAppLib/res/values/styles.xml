@@ -17,7 +17,8 @@
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
     
-    <style name="CommonTheme.Light" parent="@android:style/Theme.Light" />
+    <style name="CommonTheme.Light" parent="@android:style/Theme.Light" >
+    </style>
     
     <style name="HeaderStyle">
         <item name="android:windowBackground">@color/header_background_color</item>
