@@ -1,5 +1,8 @@
 package au.com.tyo.android;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -12,12 +15,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.View;
 import au.com.tyo.Debug;
 
-public abstract class CommonApplicationImpl  extends Application implements CommonApplication {
+public abstract class CommonApplicationImpl implements CommonController {
+	
+	private static final String LOG_TAG = "CommonApplicationImpl";
 	
 	protected Context context;
 	
@@ -52,24 +58,45 @@ public abstract class CommonApplicationImpl  extends Application implements Comm
 	public CommonApplicationImpl(Context context) {
 		this.context = context;
 		
-		 notificationManager = (NotificationManager) context.getSystemService(NOTIFICATION_SERVICE);
+		 notificationManager = (NotificationManager) context.getSystemService(Application.NOTIFICATION_SERVICE);
 	}
 	
 	public static Object getInstance() {
 		return instance;
 	}
 	
+	public static void setInstance(Object obj) {
+		instance = obj;
+	}
+	
 	public static void initializeInstance(Context context, Class<?> theClass) {
 		if (instance == null)
 			try {
-				instance = theClass.newInstance();
+				if (null != context) {
+					Constructor ctor = theClass.getConstructor(Context.class/*Classes.clsController*/);
+					instance = ctor.newInstance(new Object[] { context });
+				}	
 			} catch (InstantiationException e) {
 				e.printStackTrace();
 			} catch (IllegalAccessException e) {
 				e.printStackTrace();
+			} catch (NoSuchMethodException e) {
+				e.printStackTrace();
+			} catch (IllegalArgumentException e) {
+				e.printStackTrace();
+			} catch (InvocationTargetException e) {
+				e.printStackTrace();
+			}
+			finally {
+				if (instance == null)
+					try {
+						instance = theClass.newInstance();
+					} catch (InstantiationException e) {
+					} catch (IllegalAccessException e) {
+					}
 			}
 		
-		CommonApplication ca = (CommonApplication) instance;
+		CommonController ca = (CommonController) instance;
 		if (ca.getContext() == null && context != null) {
 			ca.setContext(context);
 			
@@ -154,8 +181,6 @@ public abstract class CommonApplicationImpl  extends Application implements Comm
 
 	@Override
 	public void onCreate() {
-		super.onCreate();
-		
 		logoResId = R.drawable.ic_logo;
 	}
 
@@ -271,9 +296,12 @@ public abstract class CommonApplicationImpl  extends Application implements Comm
 	}
 	
 	public void startActivity(Class cls) {
-		if (context == null)
-			context = this.getApplicationContext();
-		startActivity(context, cls);
+		if (null != context)
+//		if (context == null)
+//			context = this.getApplicationContext();
+			startActivity(context, cls);
+		else
+			Log.e(LOG_TAG, "trying to start a new activity without context");
 	}
 	
 	public static void startActivity(Context context, Class cls) {

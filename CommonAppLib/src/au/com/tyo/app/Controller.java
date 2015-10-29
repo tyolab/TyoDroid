@@ -9,7 +9,7 @@ import java.util.List;
 
 import android.content.res.Configuration;
 import android.os.Bundle;
-import au.com.tyo.android.CommonApplication;
+import au.com.tyo.android.CommonController;
 import au.com.tyo.android.services.ImageDownloader;
 import au.com.tyo.app.data.DisplayItem;
 import au.com.tyo.app.data.ImagedSearchableItem;
@@ -21,7 +21,7 @@ import au.com.tyo.app.ui.UI;
  */
 
 
-public interface Controller extends CommonApplication {
+public interface Controller extends CommonController {
 
 	UI getUi();
 

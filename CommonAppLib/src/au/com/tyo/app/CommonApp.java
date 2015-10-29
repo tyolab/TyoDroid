@@ -19,6 +19,7 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.WindowManager;
 import au.com.tyo.android.CommonApplicationImpl;
+import au.com.tyo.android.CommonInitializer;
 import au.com.tyo.android.services.ImageDownloader;
 import au.com.tyo.app.data.DisplayItem;
 import au.com.tyo.app.data.ImagedSearchableItem;
@@ -106,9 +107,13 @@ public class CommonApp extends CommonApplicationImpl implements Controller {
 		initializeInstance(context, CommonApp.class);
 	}
 
-	public static CommonApp getInstance() {
-		return (CommonApp) instance;
-	}
+//	public static CommonApp getInstance() {
+//		return (CommonApp) instance;
+//	}
+//	
+//	public static CommonApp getInstance(Context context) {
+//		return (CommonApp) CommonApplicatonImpl.getInstance(context);
+//	}
 
 	@Override
 	public UI getUi() {
