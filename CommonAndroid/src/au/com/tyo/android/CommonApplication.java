@@ -63,9 +63,9 @@ public interface CommonApplication extends Observer {
 
 	Activity getActivityContext();
 
-	void initializeOnMainThread(Context context);
+	void initializeInMainThread(Context context);
 
-	void initializeOnBackground(Context context);
+	void initializeInBackgroundThread(Context context);
 
 	void setAdStatus(Context context);
 

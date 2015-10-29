@@ -110,7 +110,7 @@ public class SplashScreen extends Activity implements SplashScreenMessageListene
 		}
 			
 		if (controller.getContext() == null)
-			controller.initializeOnMainThread(this);
+			controller.initializeInMainThread(this);
         /*
          * We have to have this 
          */
@@ -205,7 +205,7 @@ public class SplashScreen extends Activity implements SplashScreenMessageListene
 			
 			progressBar.setProgress(10);
 
-			controller.initializeOnBackground(SplashScreen.this);
+			controller.initializeInBackgroundThread(SplashScreen.this);
 			
 			handler.sendEmptyMessage(MESSAGE_APP_INITIALIZED);
 			

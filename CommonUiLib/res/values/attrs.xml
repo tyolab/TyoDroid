@@ -36,6 +36,8 @@
 	
 	<attr name="search_result_text_title_style" format="reference" />
 	
+	<attr name="searchBarBackground" format="reference" />
+	
 	<attr name="selectable_item_background" format="reference" />
 	
 	<attr name="TwoLineListItemColumnOneStyle" format="reference" />

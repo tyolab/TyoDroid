@@ -12,13 +12,20 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
+import android.widget.AbsListView.OnScrollListener;
 import android.widget.FrameLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 
-public class CommonListView extends FrameLayout /*implements OnItemClickListener*/ {
+public class CommonListView extends RelativeLayout /*implements OnItemClickListener*/ implements OnScrollListener {
 	
 	protected ListView list;
+	
+	private int lastVisible;
+	
+	private onLastItemVisibleListener lastItemVisibleListener;
 	
 	public CommonListView(Context context) {
 		super(context);
@@ -38,6 +45,13 @@ public class CommonListView extends FrameLayout /*implements OnItemClickListener
 	
 	private void init(Context context) {
 //		createListView();
+		lastItemVisibleListener = null;
+	}
+	
+	public static interface onLastItemVisibleListener {
+		
+		public void onLastItemVisible();
+		
 	}
 
 	@Override
@@ -45,20 +59,10 @@ public class CommonListView extends FrameLayout /*implements OnItemClickListener
 		super.onFinishInflate();
 		
 		setDescendantFocusability(ViewGroup.FOCUS_AFTER_DESCENDANTS);
-		
-		/* stop something stealing the touch event */
-//		setOnTouchListener(new View.OnTouchListener() {
-//	        @Override
-//	        public boolean onTouch(View view, MotionEvent motionEvent) {
-//	            view.getParent().requestDisallowInterceptTouchEvent(true);
-//	            switch (motionEvent.getAction() & MotionEvent.ACTION_MASK) {
-//	            case MotionEvent.ACTION_UP:
-//	                view.getParent().requestDisallowInterceptTouchEvent(false);
-//	                break;
-//	            }
-//	            return false;
-//	        }
-//	    });
+	}
+	
+	public void setOnLastItemVisibleListener(onLastItemVisibleListener listener) {
+		this.lastItemVisibleListener = listener;
 	}
 
 	public ListAdapter getAdapter() {
@@ -73,10 +77,13 @@ public class CommonListView extends FrameLayout /*implements OnItemClickListener
 	public void createListView() {
 		list = createListView(this.getContext(), this);
 		list.requestFocus();
+		list.setOnScrollListener(this);
 	}
 	
 	public boolean lookForListView(int resId) {
 		list = (ListView) findViewById(resId);
+		if (null != list)
+			list.setOnScrollListener(this);
 		return list != null;
 	}
 	
@@ -112,11 +119,45 @@ public class CommonListView extends FrameLayout /*implements OnItemClickListener
 		if (list.getChildCount() == 0)
 			return true;
 		int last = list.getLastVisiblePosition();
-		return last == list.getCount() - 1 && list.getChildAt(last).getBottom() <= list.getHeight();
+		return isLastItemVisible(list.getCount(), last) && isLastItemVisible(list);
+	}
+	
+	public static boolean isLastItemVisible(ListView list) {
+		return list.getChildAt(list.getLastVisiblePosition()).getBottom() <= list.getHeight();
+	}
+	
+	public static boolean isLastItemVisible(int numberOfItems, int lastVisible) {
+		return (lastVisible == numberOfItems - 1);
 	}
 	
 	public boolean doesItemsFitInScreen() {
-		return doesItemsFitInScreen(list);
+		lastVisible = list.getLastVisiblePosition();
+		return isLastItemVisible(list.getCount(), lastVisible) && isLastItemVisible(list);
+	}
+
+	@Override
+	public void onScrollStateChanged(AbsListView view, int scrollState) {
+	}
+
+	@Override
+	public void onScroll(AbsListView lv, int firstVisibleItem,
+			int visibleItemCount, int totalItemCount) {
+		switch(lv.getId()) {
+        	case android.R.id.list:
+        		lastVisible = list.getLastVisiblePosition();
+        		
+        		final int lastItem = firstVisibleItem + visibleItemCount;
+        		if (lastItem == totalItemCount) {
+        			if (null != lastItemVisibleListener)
+        				lastItemVisibleListener.onLastItemVisible();
+        		}
+        		break;
+		}
+	}
+	
+	public void removeDivider() {
+		list.setDivider(null);
+		list.setDividerHeight(0);
 	}
 	
 //	@Override 

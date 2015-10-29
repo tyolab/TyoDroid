@@ -118,6 +118,8 @@
     	<item name="android:panelFullBackground">@android:color/darker_gray</item>
     	
     	<item name="android:checkboxStyle">@style/CommonCheckBox.Light</item>
+    	
+    	<item name="searchBarBackground">@drawable/searchbar_bg_light</item>
     </style>
     
     <style name="CommonTheme.Dark" parent="android:Theme" />
@@ -176,6 +178,8 @@
     	<item name="android:tabWidgetStyle">@style/CommonTabWidget</item>
     	
     	<item name="android:checkboxStyle">@style/CommonCheckBox.Dark</item>
+    	
+    	<item name="searchBarBackground">@drawable/searchbar_bg_dark</item>
     </style>
     
     <style name="AppBaseTheme.Light" parent="CommonTheme.Light.Pale">

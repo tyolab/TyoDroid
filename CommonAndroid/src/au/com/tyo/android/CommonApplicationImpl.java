@@ -73,8 +73,8 @@ public abstract class CommonApplicationImpl  extends Application implements Comm
 		if (ca.getContext() == null && context != null) {
 			ca.setContext(context);
 			
-			ca.initializeOnMainThread(context);
-			ca.initializeOnBackground(context);
+			ca.initializeInMainThread(context);
+			ca.initializeInBackgroundThread(context);
 		}
 	}
 	

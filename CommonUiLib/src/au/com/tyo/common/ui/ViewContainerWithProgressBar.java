@@ -15,6 +15,10 @@ public class ViewContainerWithProgressBar extends FrameLayout {
 	private ProgressBar progressBar;
 	
 	private ViewGroup viewContainer;
+	
+	private int viewContainerResId = R.id.view_container;
+	
+	private int progressBarResId = R.id.container_progress_bar;
 
 	public ViewContainerWithProgressBar(Context context) {
 		super(context);
@@ -32,6 +36,22 @@ public class ViewContainerWithProgressBar extends FrameLayout {
 		
 	}
 	
+	public int getViewContainerResId() {
+		return viewContainerResId;
+	}
+
+	public void setViewContainerResId(int viewContainerResId) {
+		this.viewContainerResId = viewContainerResId;
+	}
+
+	public int getProgressBarResId() {
+		return progressBarResId;
+	}
+
+	public void setProgressBarResId(int progressBarResId) {
+		this.progressBarResId = progressBarResId;
+	}
+
 	public void inflateFromDefaultLayoutResource() {
         LayoutInflater factory = LayoutInflater.from(this.getContext());
         factory.inflate(R.layout.container_and_progressbar, this);
@@ -52,14 +72,17 @@ public class ViewContainerWithProgressBar extends FrameLayout {
 	}
 	
 	public void setupComponents() {
-       viewContainer = (ViewGroup)  findViewById(R.id.view_container);
+       viewContainer = (ViewGroup) findViewById(viewContainerResId);
         
-       progressBar = (ProgressBar) findViewById(R.id.article_progress_bar);
+       progressBar = (ProgressBar) findViewById(progressBarResId);
        
-       FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
-       params.gravity = Gravity.CENTER;
-       
-       progressBar.setLayoutParams(params);
+       if (null != progressBar) {
+           
+           FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
+           params.gravity = Gravity.CENTER;
+           
+    	   progressBar.setLayoutParams(params);
+       }
 	}
 	
 	public void hideProgressBar() {

@@ -242,6 +242,13 @@ public class AndroidUtils {
 		context.startActivity(goIntent);
 	}
 	
+	public static void openSystemFileBrowser(Context context) {
+	     Intent intent = new Intent();
+	     intent.setAction(Intent.ACTION_GET_CONTENT);
+	     intent.setType("file/*");
+	     context.startActivity(intent);	
+	}
+	
 	public static int getActionBarHeight(Context context) {
 		TypedValue tv = new TypedValue();
 		int actionBarHeight = 0;

@@ -148,8 +148,8 @@ public class CommonApp extends CommonApplicationImpl implements Controller {
 						gotIt = false;
 					}
 			}
-			else if (Classes.clsUi != null) 
-				cls = Classes.clsUi;
+			else if (CommonInitializer.clsUi != null) 
+				cls = CommonInitializer.clsUi;
 			else 
 				cls = UIBase.class;
 			
@@ -202,7 +202,7 @@ public class CommonApp extends CommonApplicationImpl implements Controller {
 	}
 
 	@Override
-	public void initializeOnMainThread(Context context) {
+	public void initializeInMainThread(Context context) {
 		if (settings == null)
 			settings = new CommonAppSettings(context);
 		
@@ -211,7 +211,7 @@ public class CommonApp extends CommonApplicationImpl implements Controller {
 	}
 
 	@Override
-	public void initializeOnBackground(Context context) {
+	public void initializeInBackgroundThread(Context context) {
 
 	}
 
