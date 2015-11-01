@@ -77,22 +77,24 @@ public class ViewContainerWithProgressBar extends FrameLayout {
        progressBar = (ProgressBar) findViewById(progressBarResId);
        
        if (null != progressBar) {
-           
-           FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
-           params.gravity = Gravity.CENTER;
-           
-    	   progressBar.setLayoutParams(params);
+    	   progressBar.setVisibility(View.GONE);
+//           FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
+//           params.gravity = Gravity.CENTER;
+//           
+//    	   progressBar.setLayoutParams(params);
        }
 	}
 	
 	public void hideProgressBar() {
-		progressBar.setVisibility(View.GONE);
+		if (null != progressBar)
+			progressBar.setVisibility(View.GONE);
 		viewContainer.setVisibility(View.VISIBLE);
 	}
 	
 	public void showProgressBar() {
 		viewContainer.setVisibility(View.GONE);
-		progressBar.setVisibility(View.VISIBLE);
+		if (null != progressBar)
+			progressBar.setVisibility(View.VISIBLE);
 	}
 	
 	public void addContentView(View view) {

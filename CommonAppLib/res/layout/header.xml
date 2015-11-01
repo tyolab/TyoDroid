@@ -17,7 +17,9 @@
     >
         
     <include
-        layout="@layout/search_bar" />
+        layout="@layout/search_bar"
+        android:id="@+id/search_view"
+        />
  
     <!-- 
     

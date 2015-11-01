@@ -1,3 +1,7 @@
+/*
+ * Copyright (C) 2015 TYONLINE TECHNOLOGY PTY. LTD.
+ *
+ */
 package au.com.tyo.app;
 
 import android.annotation.SuppressLint;
@@ -14,7 +18,11 @@ import android.widget.FrameLayout;
 import au.com.tyo.android.AndroidUtils;
 import au.com.tyo.app.ui.UI;
 
-
+/**
+ * 
+ * @author Eric Tang <eric.tang@tyo.com.au>
+ * 
+ */
 public class CommonActivity extends Activity  {
 	
 	private static final String LOG_TAG = "CommonActivity";
@@ -29,7 +37,7 @@ public class CommonActivity extends Activity  {
         if (controller == null) {
 			if (CommonApp.getInstance() == null)
 				CommonApp.initializeInstance(null);
-	        controller = CommonApp.getInstance();
+	        controller = (Controller) CommonApp.getInstance();
         }
         
         
@@ -66,11 +74,6 @@ public class CommonActivity extends Activity  {
                 controller.setActivityContext(this);
                 controller.setContext(this);
                 
-                /*
-                 * has to initialize the app first, like setup the settings, etc.
-                 */
-                controller.onAppStart();
-                
         		run(savedInstanceState);
 //        	}
 //        	else {
@@ -78,6 +81,12 @@ public class CommonActivity extends Activity  {
 //        		startDataHandlingActivity();
 //        	}
 //        }
+        		
+                
+        /*
+         * after UI initialization, do whatever needs to be done, like setting tup the settings, etc.
+         */
+        controller.onAppStart();
 	}
 
 	protected void startDataHandlingActivity() {

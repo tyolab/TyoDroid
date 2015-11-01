@@ -159,7 +159,14 @@ public class CommonListView extends RelativeLayout /*implements OnItemClickListe
 		list.setDivider(null);
 		list.setDividerHeight(0);
 	}
+
+	public void refresh() {
+		list.invalidateViews();
+	}
 	
+	public ListView getListView() {
+		return list;
+	}
 //	@Override 
 //	public boolean onTouchEvent(MotionEvent ev) {
 //	   for(int i = 0; i < this.getChildCount(); i++){

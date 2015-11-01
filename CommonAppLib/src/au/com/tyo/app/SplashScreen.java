@@ -20,8 +20,6 @@ import au.com.tyo.app.R;
 /**
  * @author Eric Tang <eric.tang@tyo.com.au>
  */
-
-
 public class SplashScreen extends Activity implements SplashScreenMessageListener {
 	
 	private static int MESSAGE_AD_LOADED = 99;
@@ -52,7 +50,7 @@ public class SplashScreen extends Activity implements SplashScreenMessageListene
         if (controller == null) {
 			if (CommonApp.getInstance() == null)
 				CommonApp.initializeInstance(null);
-	        controller = CommonApp.getInstance();
+	        controller = (Controller) CommonApp.getInstance();
         }
 	}
 
