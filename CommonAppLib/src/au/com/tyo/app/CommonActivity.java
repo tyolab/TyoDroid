@@ -4,6 +4,8 @@
  */
 package au.com.tyo.app;
 
+import java.lang.reflect.Field;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.SearchManager;
@@ -14,6 +16,7 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.ViewConfiguration;
 import android.widget.FrameLayout;
 import au.com.tyo.android.AndroidUtils;
 import au.com.tyo.app.ui.UI;
@@ -127,6 +130,10 @@ public class CommonActivity extends Activity  {
 		else
 			setupTitleBar2();
 		
+		/*
+		 * now show the overflow menu
+		 */
+		showOverflowMenu();
         
         if (true) {
         	setContentView(R.layout.activity_main);
@@ -220,7 +227,6 @@ public class CommonActivity extends Activity  {
 		if (action != null && action.equalsIgnoreCase("android.intent.action.ASSIST")) {
 			Log.d(LOG_TAG, "starting native voice recognizer from main activity");
 			getIntent().setAction("");
-//			controller.startNativeVoiceRecognizer(); 
 		}
 		else {
 //			Bundle extras =intent.getExtras();
@@ -366,4 +372,20 @@ public class CommonActivity extends Activity  {
        
         controller.onRestoreInstanceState(savedInstanceState);
     }*/
+    
+    /**
+     * show the overflow menu (three-dot)
+     */
+    private void showOverflowMenu() {
+        try {
+           ViewConfiguration config = ViewConfiguration.get(this);
+           Field menuKeyField = ViewConfiguration.class.getDeclaredField("sHasPermanentMenuKey");
+           if(menuKeyField != null) {
+               menuKeyField.setAccessible(true);
+               menuKeyField.setBoolean(config, false);
+           }
+       } catch (Exception e) {
+           e.printStackTrace();
+       }
+     }
 }

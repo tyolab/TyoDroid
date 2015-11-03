@@ -360,10 +360,11 @@ public abstract class CommonApplicationImpl implements CommonController {
 	public boolean onOptionsItemSelected(Activity activity, android.view.MenuItem item) {
 	    int itemId = item.getItemId();
 	    
-	    if (itemId == R.id.menuItemAbout)
+	    if (itemId == R.id.menuItemAbout) {
 			showInfo();
-		else
 			return true;
+	    }
+	    
 		return false;
 	}
 	

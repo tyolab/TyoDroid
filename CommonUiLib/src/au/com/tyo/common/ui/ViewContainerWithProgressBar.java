@@ -12,13 +12,13 @@ import au.com.tyo.common.ui.R;
 
 public class ViewContainerWithProgressBar extends FrameLayout {
 	
-	private ProgressBar progressBar;
+	private ViewGroup progressBarContainer;
 	
 	private ViewGroup viewContainer;
 	
 	private int viewContainerResId = R.id.view_container;
 	
-	private int progressBarResId = R.id.container_progress_bar;
+	private int progressBarContainerResId = R.id.container_progress_bar;
 
 	public ViewContainerWithProgressBar(Context context) {
 		super(context);
@@ -45,11 +45,11 @@ public class ViewContainerWithProgressBar extends FrameLayout {
 	}
 
 	public int getProgressBarResId() {
-		return progressBarResId;
+		return progressBarContainerResId;
 	}
 
 	public void setProgressBarResId(int progressBarResId) {
-		this.progressBarResId = progressBarResId;
+		this.progressBarContainerResId = progressBarResId;
 	}
 
 	public void inflateFromDefaultLayoutResource() {
@@ -72,12 +72,13 @@ public class ViewContainerWithProgressBar extends FrameLayout {
 	}
 	
 	public void setupComponents() {
+		
        viewContainer = (ViewGroup) findViewById(viewContainerResId);
         
-       progressBar = (ProgressBar) findViewById(progressBarResId);
+       progressBarContainer = (ViewGroup) findViewById(progressBarContainerResId);
        
-       if (null != progressBar) {
-    	   progressBar.setVisibility(View.GONE);
+       if (null != progressBarContainer) {
+//    	   progressBarContainer.setVisibility(View.GONE);
 //           FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
 //           params.gravity = Gravity.CENTER;
 //           
@@ -86,15 +87,15 @@ public class ViewContainerWithProgressBar extends FrameLayout {
 	}
 	
 	public void hideProgressBar() {
-		if (null != progressBar)
-			progressBar.setVisibility(View.GONE);
+		if (null != progressBarContainer)
+			progressBarContainer.setVisibility(View.GONE);
 		viewContainer.setVisibility(View.VISIBLE);
 	}
 	
 	public void showProgressBar() {
 		viewContainer.setVisibility(View.GONE);
-		if (null != progressBar)
-			progressBar.setVisibility(View.VISIBLE);
+		if (null != progressBarContainer)
+			progressBarContainer.setVisibility(View.VISIBLE);
 	}
 	
 	public void addContentView(View view) {
