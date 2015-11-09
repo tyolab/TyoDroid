@@ -303,4 +303,12 @@ public class AndroidUtils {
 
 		return list;
 	}
+	
+	public static Uri getRawResourceUri(Context context, int resId) {
+		return Uri.parse("android.resource://" + context.getPackageName() + "/" + resId);
+	}
+	
+	public static Uri getRawResourceUri(Context context, String resName) {
+		return Uri.parse("android.resource://" + context.getPackageName() + "/raw/" + resName);
+	}
 }

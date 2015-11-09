@@ -1,7 +1,3 @@
-/*
- * Copyright (C) 2015 TYONLINE TECHNOLOGY PTY. LTD.
- *
- */
 package au.com.tyo.app;
 
 import android.annotation.TargetApi;

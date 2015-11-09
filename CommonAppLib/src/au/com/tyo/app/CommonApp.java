@@ -73,49 +73,6 @@ public class CommonApp extends CommonApplicationImpl implements Controller {
 	}
 
 	@Override
-	public void onResume() {
-	}
-
-	@Override
-	public void onDestroy() {
-
-	}
-
-	@Override
-	public void onPause() {
-	}
-
-	@Override
-	public boolean onKeyDown(int keyCode, KeyEvent event) {
-		return false;
-	}
-
-	@Override
-	public boolean onKeyUp(int keyCode, KeyEvent event) {
-		return false;
-	}
-
-	@Override
-	public void onStop() {
-	}
-
-	@Override
-	public void update(Observable observable, Object data) {
-	}
-
-	public static void initializeInstance(Context context) {
-		initializeInstance(context, CommonApp.class);
-	}
-
-//	public static CommonApp getInstance() {
-//		return (CommonApp) instance;
-//	}
-//	
-//	public static CommonApp getInstance(Context context) {
-//		return (CommonApp) CommonApplicatonImpl.getInstance(context);
-//	}
-
-	@Override
 	public UI getUi() {
 		return ui;
 	}
@@ -123,14 +80,6 @@ public class CommonApp extends CommonApplicationImpl implements Controller {
 	@Override
 	public void setUi(UI ui) {
 		this.ui = ui;
-	}
-
-	@Override
-	public void onSaveInstanceState(Bundle savedInstanceState) {
-	}
-
-	@Override
-	public void onRestoreInstanceState(Bundle savedInstanceState) {
 	}
 
 	@Override
@@ -188,11 +137,6 @@ public class CommonApp extends CommonApplicationImpl implements Controller {
 		return this.settings;
 	}
 
-	@Override
-	public void onActivityResult(int requestCode, int resultCode, Intent data) {
-	}
-
-
 	public InputManager getInputManager() {
 		return inputManager;
 	}
@@ -208,6 +152,8 @@ public class CommonApp extends CommonApplicationImpl implements Controller {
 
 	@Override
 	public void initializeInMainThread(Context context) {
+		super.initializeInMainThread(context);
+		
 		if (settings == null)
 			settings = new CommonAppSettings(context);
 		
@@ -217,7 +163,7 @@ public class CommonApp extends CommonApplicationImpl implements Controller {
 
 	@Override
 	public void initializeInBackgroundThread(Context context) {
-
+		super.initializeInBackgroundThread(context);
 	}
 
 	@Override
@@ -241,10 +187,6 @@ public class CommonApp extends CommonApplicationImpl implements Controller {
 	@Override
 	public NetworkMonitor getNetworkMonitor() {
 		return watchDog;
-	}
-
-	@Override
-	public void onAppStart() {
 	}
 
 	@Override
@@ -321,6 +263,10 @@ public class CommonApp extends CommonApplicationImpl implements Controller {
 	@Override
 	public List<String> getQueryList() {
 		return queries;
+	}
+
+	@Override
+	public void onAppStart() {
 	}
 	
 }

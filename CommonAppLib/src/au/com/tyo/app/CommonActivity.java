@@ -39,7 +39,7 @@ public class CommonActivity extends Activity  {
 		
         if (controller == null) {
 			if (CommonApp.getInstance() == null)
-				CommonApp.initializeInstance(null);
+				CommonApp.initializeInstance(CommonApp.class, this);
 	        controller = (Controller) CommonApp.getInstance();
         }
         
@@ -73,7 +73,7 @@ public class CommonActivity extends Activity  {
 //        		}
 //        		else
 //        			controller.setContext(this);
-            	CommonApp.initializeInstance(this);
+//            	CommonApp.initializeInstance();
                 controller.setActivityContext(this);
                 controller.setContext(this);
                 

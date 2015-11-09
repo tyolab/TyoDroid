@@ -12,7 +12,7 @@ import au.com.tyo.common.ui.R;
 
 public class ViewContainerWithProgressBar extends FrameLayout {
 	
-	private ViewGroup progressBarContainer;
+	private View progressBarContainer;
 	
 	private ViewGroup viewContainer;
 	
@@ -75,7 +75,7 @@ public class ViewContainerWithProgressBar extends FrameLayout {
 		
        viewContainer = (ViewGroup) findViewById(viewContainerResId);
         
-       progressBarContainer = (ViewGroup) findViewById(progressBarContainerResId);
+       progressBarContainer = (View) findViewById(progressBarContainerResId);
        
        if (null != progressBarContainer) {
 //    	   progressBarContainer.setVisibility(View.GONE);

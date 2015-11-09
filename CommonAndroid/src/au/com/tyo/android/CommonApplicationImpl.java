@@ -2,6 +2,7 @@ package au.com.tyo.android;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.util.Observable;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -21,7 +22,7 @@ import android.view.Menu;
 import android.view.View;
 import au.com.tyo.Debug;
 
-public abstract class CommonApplicationImpl implements CommonController {
+public class CommonApplicationImpl implements CommonController {
 	
 	private static final String LOG_TAG = "CommonApplicationImpl";
 	
@@ -69,7 +70,19 @@ public abstract class CommonApplicationImpl implements CommonController {
 		instance = obj;
 	}
 	
-	public static void initializeInstance(Context context, Class<?> theClass) {
+	public static void initializeInstance(Class<?> theClass) {
+		initializeInstance(theClass, null);
+	}
+	
+	public static void initializeInstance(Class<?> theClass, Context context) {
+		initializeInstance(theClass, context, true, false);
+	}
+	
+	public static void initializeInstance(Class<?> theClass, Context context, boolean initializeBackground) {
+		initializeInstance(theClass, context, true, initializeBackground);
+	}
+	
+	public static void initializeInstance(Class<?> theClass, Context context, boolean initializeMain, boolean initializeBackground) {
 		if (instance == null)
 			try {
 				if (null != context) {
@@ -100,9 +113,23 @@ public abstract class CommonApplicationImpl implements CommonController {
 		if (ca.getContext() == null && context != null) {
 			ca.setContext(context);
 			
-			ca.initializeInMainThread(context);
-			ca.initializeInBackgroundThread(context);
+			if (initializeMain)
+				ca.initializeInMainThread(context);
+			
+			if (initializeBackground)
+				ca.initializeInBackgroundThread(context);
 		}
+	}
+	
+	@Override
+	public void initializeInMainThread(Context context) {
+		if (notificationManager == null)
+			notificationManager = (NotificationManager) context.getSystemService(Application.NOTIFICATION_SERVICE);
+	}
+	
+	@Override
+	public void initializeInBackgroundThread(Context context) {
+		
 	}
 	
 	public boolean onKeyUp(int keyCode, KeyEvent event) {
@@ -425,5 +452,37 @@ public abstract class CommonApplicationImpl implements CommonController {
 
 	@Override
 	public void onPostCreate(Bundle savedInstanceState) {
+	}
+
+	@Override
+	public void update(Observable observable, Object data) {
+	}
+
+	@Override
+	public void onResume() {
+	}
+
+	@Override
+	public void onDestroy() {
+	}
+
+	@Override
+	public void onPause() {
+	}
+
+	@Override
+	public void onStop() {
+	}
+
+	@Override
+	public void onSaveInstanceState(Bundle savedInstanceState) {
+	}
+
+	@Override
+	public void onRestoreInstanceState(Bundle savedInstanceState) {
+	}
+
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 	}
 }
