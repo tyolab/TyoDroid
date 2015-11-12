@@ -3,7 +3,7 @@ package au.com.tyo.app.data;
 import java.io.Serializable;
 import java.util.Comparator;
 
-public class SearchableItem implements Serializable, Comparator<SearchableItem>, Comparable<SearchableItem> {
+public class SearchableItem implements Searchable, Serializable, Comparator<SearchableItem>, Comparable<SearchableItem> {
 	
 	/**
 	 * 
@@ -26,7 +26,7 @@ public class SearchableItem implements Serializable, Comparator<SearchableItem>,
 	
 	private long id;
 	
-	private int rank;
+	private long rank;
 	
 	private double rsv;
 	
@@ -56,11 +56,11 @@ public class SearchableItem implements Serializable, Comparator<SearchableItem>,
 		this.id = id;
 	}
 
-	public int getRank() {
+	public long getPosition() {
 		return rank;
 	}
 
-	public void setRank(int rank) {
+	public void setPosition(long rank) {
 		this.rank = rank;
 	}
 
@@ -112,5 +112,15 @@ public class SearchableItem implements Serializable, Comparator<SearchableItem>,
 	@Override
 	public int compare(SearchableItem lhs, SearchableItem rhs) {
 		return lhs.compareTo(rhs);
+	}
+
+	@Override
+	public boolean requiresFurtherProcess() {
+		return true;
+	}
+
+	@Override
+	public String getShort() {
+		return null;
 	}
 }

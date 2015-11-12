@@ -256,4 +256,14 @@ public class UIBase implements UI {
 			}
 		}
 	}
+
+	@Override
+	public void hideMainProgressBar() {
+	}
+
+	@Override
+	public void hideSuggestionView() {
+		searchView.requestFocusForSearchButton();
+		setSuggestionViewVisibility(false);
+	}
 }

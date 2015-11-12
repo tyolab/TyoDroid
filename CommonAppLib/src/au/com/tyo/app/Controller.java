@@ -13,6 +13,7 @@ import au.com.tyo.android.CommonController;
 import au.com.tyo.android.services.ImageDownloader;
 import au.com.tyo.app.data.DisplayItem;
 import au.com.tyo.app.data.ImagedSearchableItem;
+import au.com.tyo.app.data.Searchable;
 import au.com.tyo.app.data.SearchableItem;
 import au.com.tyo.app.ui.UI;
 
@@ -47,7 +48,7 @@ public interface Controller extends CommonController {
 
 	String getTextForSearchResultItem(ImagedSearchableItem ws, String query);
 
-	DisplayItem getItemText(SearchableItem item);
+	DisplayItem getItemText(Searchable item);
 
 	List<?> getSuggesions(String query, String extra, boolean hasToBeBestMatch);
 	
@@ -68,9 +69,9 @@ public interface Controller extends CommonController {
 
 	void onSearchInputFocused();
 	
-	void open(SearchableItem item);
+	void open(Searchable item);
 	
-	void search(SearchableItem page, int fromHistory, boolean b);
+	void search(Searchable page, int fromHistory, boolean b);
 
 	List<String> getQueryList();
 	

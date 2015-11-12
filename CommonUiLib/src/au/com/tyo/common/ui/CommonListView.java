@@ -162,11 +162,18 @@ public class CommonListView extends RelativeLayout /*implements OnItemClickListe
 
 	public void refresh() {
 		list.invalidateViews();
+		list.refreshDrawableState();
 	}
 	
 	public ListView getListView() {
 		return list;
 	}
+	
+	public void setSingleChoiceModeOn() {
+		if (null != list)
+			list.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+	}
+	
 //	@Override 
 //	public boolean onTouchEvent(MotionEvent ev) {
 //	   for(int i = 0; i < this.getChildCount(); i++){

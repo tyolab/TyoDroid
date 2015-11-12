@@ -14,7 +14,7 @@ import au.com.tyo.services.Internet;
  */
 
 
-public class NetworkMonitor  implements Runnable {
+public class NetworkMonitor implements Runnable {
 	
 	public static final String LOG_TAG = "NetworkMonitor";
 	

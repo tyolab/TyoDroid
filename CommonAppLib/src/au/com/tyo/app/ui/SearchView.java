@@ -18,8 +18,6 @@ import au.com.tyo.app.R;
 /**
  * @author Eric Tang <eric.tang@tyo.com.au>
  */
-
-
 public class SearchView extends LinearLayout implements
  	OnClickListener, SearchInputView.SearchInputListener, SearchInputView.SearchStateListener {
 

@@ -8,6 +8,7 @@ package au.com.tyo.app;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Observable;
 
@@ -23,6 +24,7 @@ import au.com.tyo.android.CommonInitializer;
 import au.com.tyo.android.services.ImageDownloader;
 import au.com.tyo.app.data.DisplayItem;
 import au.com.tyo.app.data.ImagedSearchableItem;
+import au.com.tyo.app.data.Searchable;
 import au.com.tyo.app.data.SearchableItem;
 import au.com.tyo.app.ui.UI;
 import au.com.tyo.app.ui.UIBase;
@@ -177,6 +179,7 @@ public class CommonApp extends CommonApplicationImpl implements Controller {
 
 	@Override
 	public void onUiReady() {
+		ui.hideMainProgressBar();
 	}
 
 	@Override
@@ -204,11 +207,11 @@ public class CommonApp extends CommonApplicationImpl implements Controller {
 
 	@Override
 	public List<?> getSuggesions(String query, 	String extra, boolean hasToBeBestMatch) {
-		return new ArrayList<String>();
+		return Arrays.asList(new String[] {"suggestion method is not implemented yet"});
 	}
 
 	@Override
-	public DisplayItem getItemText(SearchableItem item) {
+	public DisplayItem getItemText(Searchable item) {
 		return new DisplayItem(item.getTitle(), item.getSnippet());
 	}
 
@@ -253,11 +256,11 @@ public class CommonApp extends CommonApplicationImpl implements Controller {
 	}
 
 	@Override
-	public void open(SearchableItem item) {
+	public void open(Searchable item) {
 	}
 
 	@Override
-	public void search(SearchableItem page, int fromHistory, boolean b) {
+	public void search(Searchable page, int fromHistory, boolean b) {
 	}
 
 	@Override

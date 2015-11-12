@@ -49,4 +49,8 @@ public interface UI {
 
 	void setupActionBar(Object bar);
 
+	void hideMainProgressBar();
+
+	void hideSuggestionView();
+
 }

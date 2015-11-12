@@ -17,6 +17,14 @@
         android:drawable="@drawable/card_bg_light_selected" />
     
     <item 
+        android:state_activated="true" 
+        android:drawable="@drawable/card_bg_light_selected" />
+    
+    <item 
+        android:state_selected="true" 
+        android:drawable="@drawable/card_bg_light_selected" />
+    
+    <item 
         android:state_checked="true" 
         android:drawable="@drawable/card_bg_light_selected" />
     

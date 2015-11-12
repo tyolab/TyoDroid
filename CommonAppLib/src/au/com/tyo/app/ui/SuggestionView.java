@@ -1,19 +1,15 @@
 package au.com.tyo.app.ui;
 
-import java.util.ArrayList;
-
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.AdapterView.OnItemClickListener;
-import au.com.tyo.Debug;
 import au.com.tyo.app.Controller;
 import au.com.tyo.app.adapter.SuggestionsAdapter;
-import au.com.tyo.app.data.SearchableItem;
+import au.com.tyo.app.data.Searchable;
 import au.com.tyo.common.ui.CommonListView;
 import au.com.tyo.app.R;
 
@@ -94,7 +90,8 @@ public class SuggestionView extends CommonListView implements OnItemClickListene
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position,
 			long id) {
-		SearchableItem item = adapter.getItem(position);
+		Searchable item = adapter.getItem(position);
+		controller.getUi().hideSuggestionView();
 		controller.open(item);
 	}
 }

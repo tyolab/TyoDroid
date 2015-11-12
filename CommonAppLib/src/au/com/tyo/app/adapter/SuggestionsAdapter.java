@@ -16,9 +16,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import au.com.tyo.android.utils.BitmapUtils;
 import au.com.tyo.android.utils.ListViewItemAdapter;
+import au.com.tyo.app.Constants;
 import au.com.tyo.app.Controller;
 import au.com.tyo.app.data.DisplayItem;
-import au.com.tyo.app.data.SearchableItem;
+import au.com.tyo.app.data.Searchable;
 import au.com.tyo.common.ui.AutoResizeTextView;
 import au.com.tyo.app.R;
 
@@ -29,7 +30,7 @@ import au.com.tyo.app.R;
  *             "ArrayAdapter requires the resource ID to be a TextView"
  * 
  */
-public class SuggestionsAdapter extends ListViewItemAdapter<SearchableItem> /*ArrayAdapter<SearchableItem>*/ implements Filterable,
+public class SuggestionsAdapter extends ListViewItemAdapter<Searchable> /*ArrayAdapter<Searchable>*/ implements Filterable,
 	OnClickListener {
 	
 	public static final String LOG_TAG = "SuggestionsAdapter";
@@ -38,7 +39,7 @@ public class SuggestionsAdapter extends ListViewItemAdapter<SearchableItem> /*Ar
 	
 	private Filter filter;
 	
-//	private List<SearchableItem> items;
+//	private List<Searchable> items;
 	
 	private Handler handler;
 	
@@ -95,7 +96,7 @@ public class SuggestionsAdapter extends ListViewItemAdapter<SearchableItem> /*Ar
 		keepOriginal = false;
 		setShowImage(true);
 		
-//		items = new ArrayList<SearchableItem>();
+//		items = new ArrayList<Searchable>();
 		filter = new SuggestionFilter(); 
 		createMessageHandler();
 	}
@@ -107,22 +108,22 @@ public class SuggestionsAdapter extends ListViewItemAdapter<SearchableItem> /*Ar
 			@Override
 			public void handleMessage(Message msg) {
 				if (msg.obj != null) {
-					List<SearchableItem> list =  (List<SearchableItem>) msg.obj;
+					List<Searchable> list =  (List<Searchable>) msg.obj;
 					
 //					if (!keepOriginal) 
 //						clear();
 					
 //					if (list.size() > 0) {
 						if (keepOriginal) {
-							removeRedudantItem(items, currentSearch.toString());
-							removeRedudantItem(list, currentSearch.toString());
+							removeRedundantItem(items, currentSearch.toString());
+							removeRedundantItem(list, currentSearch.toString());
 						}
 						items = list;
 						
 //						if (AndroidUtils.getAndroidVersion() >= 11)
 //							addAll(items); 
 //						else {
-//							for (SearchableItem t : items)
+//							for (Searchable t : items)
 //								add(t);
 //						}
 //					}
@@ -138,7 +139,7 @@ public class SuggestionsAdapter extends ListViewItemAdapter<SearchableItem> /*Ar
 		};
 	}
 	
-	private void removeRedudantItem(List<SearchableItem> items, String name) {
+	private void removeRedundantItem(List<Searchable> items, String name) {
 		if (items.size() > 0 && name != null && items.contains(name));			
 			items.remove(name);
 	}
@@ -207,10 +208,8 @@ public class SuggestionsAdapter extends ListViewItemAdapter<SearchableItem> /*Ar
 
         @Override
         protected void onPostExecute(List<?> results) {
-//            items = results;
-//            mMixedResults = buildSuggestionResults();
             Message msg = Message.obtain();
-            msg.what = 99;
+            msg.what = Constants.MESSAGE_SUGGESTION_RETURN;
             msg.obj = results;
         	handler.sendMessage(msg);
         }
@@ -248,7 +247,7 @@ public class SuggestionsAdapter extends ListViewItemAdapter<SearchableItem> /*Ar
     }
     
     public void checkSuggestions(CharSequence hint) {
-    	checkSuggestions(hint, "sms");
+    	checkSuggestions(hint, "default");
     }
 
 	public void checkSuggestions(CharSequence hint, String type) {
@@ -277,36 +276,52 @@ public class SuggestionsAdapter extends ListViewItemAdapter<SearchableItem> /*Ar
 		
         final TextView tvTitle = (TextView) convertView.findViewById(android.R.id.text1);
         final ImageView iv = (ImageView) convertView.findViewById(R.id.itl_image_view);
+        
+        /*
+         * for displaying something really short like initials for easy identify the item
+         */
         final AutoResizeTextView tvName = (AutoResizeTextView) convertView.findViewById(R.id.itl_text_view);
 		
-		final SearchableItem item = this.getItem(position);
+		final Searchable item = this.getItem(position);
 		
-		convertView.post(new Runnable() {
-
-			@Override
-			public void run() {
-				DisplayItem displayItem = controller.getItemText(item);
-				String highlighted = controller.getTextForSearchResultItem(displayItem.getText());
-		        tvTitle.setText(Html.fromHtml(highlighted));
-		        
-				if (showImage) {
-//					InputStream bytes = controller.getItemImage(item);
-					if (displayItem.getImgBytes() != null) {
-						Bitmap bm = BitmapUtils.bytesToBitmap(displayItem.getImgBytes());
-						iv.setImageBitmap(bm);
+		if (item.requiresFurtherProcess()) {
+			convertView.post(new Runnable() {
+	
+				@Override
+				public void run() {
+					DisplayItem displayItem = controller.getItemText(item);
+					String highlighted = controller.getTextForSearchResultItem(displayItem.getText());
+			        tvTitle.setText(Html.fromHtml(highlighted));
+			        
+					if (showImage) {
+	//					InputStream bytes = controller.getItemImage(item);
+						if (displayItem.getImgBytes() != null) {
+							Bitmap bm = BitmapUtils.bytesToBitmap(displayItem.getImgBytes());
+							iv.setImageBitmap(bm);
+						}
+						else {
+							String oneChar = String.valueOf(Character.toUpperCase(displayItem.getName().charAt(0)));
+							tvName.setText(oneChar);
+							tvName.setVisibility(View.VISIBLE);
+							iv.setVisibility(View.GONE);
+						}
 					}
-					else {
-						String oneChar = String.valueOf(Character.toUpperCase(displayItem.getName().charAt(0)));
-						tvName.setText(oneChar);
-						tvName.setVisibility(View.VISIBLE);
+					else
 						iv.setVisibility(View.GONE);
-					}
 				}
-				else
-					iv.setVisibility(View.GONE);
+				
+			});
+		}
+		else {
+			tvTitle.setText(item.getTitle());
+			String idStr = item.getShort();
+			if (idStr != null && idStr.length() > 0) {
+				tvName.setText(idStr);
+				tvName.setVisibility(View.VISIBLE);
 			}
-			
-		});
+			else
+				tvName.setVisibility(View.GONE);
+		}
         
 		return convertView;
 	}
