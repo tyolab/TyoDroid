@@ -170,9 +170,25 @@ public class UIBase implements UI {
 		suggestionView = (SuggestionView) mainUi.findViewById(R.id.suggestion_view);
 		suggestionView.setupComponents(controller);
 	}
+	
+	public void showFooterView() {
+		footerView.setVisibility(View.VISIBLE);
+	}
+	
+	public void hideFooterView() {
+		footerView.setVisibility(View.GONE);
+	}
 
 	public ViewGroup getFooterView() {
 		return footerView;
+	}
+	
+	public void showHeaderView() {
+		headerView.setVisibility(View.VISIBLE);
+	}
+	
+	public void hideHeaderView() {
+		headerView.setVisibility(View.GONE);
 	}
 
 	public ViewGroup getHeaderView() {

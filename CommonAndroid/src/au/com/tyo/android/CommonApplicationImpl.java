@@ -12,6 +12,7 @@ import android.app.Dialog;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -429,6 +430,20 @@ public class CommonApplicationImpl implements CommonController {
 		if(dialog != null && !((Activity) context).isFinishing())
 			dialog.show();
 	}
+	
+	@Override
+	public void showAlertDialog(String title, String message,
+			OnClickListener okListener, OnClickListener cancelListener) {
+		showAlertDialog(title, message, okListener, cancelListener, true);
+	}
+	
+	@Override
+	public void showAlertDialog(String title, String message, DialogInterface.OnClickListener okListener, 
+			DialogInterface.OnClickListener cancelListner, boolean cancelable) {
+		Dialog dialog = DialogFactory.createDialogBuilder(context, -1, title, message, okListener, cancelListner).create();
+		dialog.setCancelable(cancelable);
+		showDialog(dialog);
+	}
 
 	@Override
 	public String getVersion() {
@@ -485,4 +500,5 @@ public class CommonApplicationImpl implements CommonController {
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 	}
+
 }
