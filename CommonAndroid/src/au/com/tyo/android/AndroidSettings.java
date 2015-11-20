@@ -171,6 +171,9 @@ public class AndroidSettings extends CommonSettings implements Android {
 //			DEBUG = true;
 	}
 
+	/**
+	 * it is not loaded by default
+	 */
 	public void loadPreferences() {
 		this.cacheEnabled = prefs.getBoolean(PREF_CACHE_STATUS, true);
 		

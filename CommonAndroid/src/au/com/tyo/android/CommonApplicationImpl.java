@@ -389,7 +389,8 @@ public class CommonApplicationImpl implements CommonController {
 	    int itemId = item.getItemId();
 	    
 	    if (itemId == R.id.menuItemAbout) {
-			showInfo();
+			showInfo(context.getResources().getBoolean(R.bool.showAcknowledgement)
+					|| context.getResources().getString(R.string.app_acknowledgement).length() > 0);
 			return true;
 	    }
 	    
