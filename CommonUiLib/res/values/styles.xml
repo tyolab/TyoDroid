@@ -21,11 +21,13 @@
 		<item name="android:checkboxStyle">@style/CommonCheckBox.Dark</item>    	
     </style>
     
-    <style name="CommonCheckBox.Light" parent="@android:style/Widget.Holo.Light.CompoundButton.CheckBox">
+    <style name="CommonCheckBox"></style>
+    
+    <style name="CommonCheckBox.Light" >
         <item name="android:textColor">@color/theme_light_text_color</item>
     </style>
     
-    <style name="CommonCheckBox.Dark" parent="@android:style/Widget.Holo.CompoundButton.CheckBox">
+    <style name="CommonCheckBox.Dark" >
         <item name="android:textColor">@color/theme_dark_text_color</item>
     </style>    
     

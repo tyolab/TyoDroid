@@ -5,6 +5,7 @@
 
 package au.com.tyo.app.ui;
 
+import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.Dialog;
 import android.content.Context;
@@ -14,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import au.com.tyo.android.AndroidUtils;
 import au.com.tyo.app.Controller;
 import au.com.tyo.app.R;
 
@@ -252,23 +254,35 @@ public class UIBase implements UI {
 	/**
 	 * normally we set the action bar like this
 	 */
+	@SuppressLint("NewApi")
 	@Override
 	public void setupActionBar(Object barObj) {
 		
 		if (barObj != null) {
 			if (barObj instanceof android.app.ActionBar) {
 				android.app.ActionBar bar = (ActionBar) barObj;
+				
+				if (AndroidUtils.getAndroidVersion() >= 14) {
+					bar.setLogo(R.drawable.ic_logo);
+				}
+				
+				if (AndroidUtils.getAndroidVersion() >= 11) {
+					bar.setDisplayUseLogoEnabled(true);
+				    bar.setDisplayShowHomeEnabled(true);
+				}
+				
+			    bar.setDisplayShowTitleEnabled(false);
 			}
 			else if (barObj instanceof android.support.v7.app.ActionBar) {
 				android.support.v7.app.ActionBar bar = (android.support.v7.app.ActionBar) barObj;
 		        bar.setLogo(R.drawable.ic_logo);
 		//      bar.setIcon(R.drawable.ic_launcher);
-		      bar.setDisplayUseLogoEnabled(true);
+		        bar.setDisplayUseLogoEnabled(true);
 		//      bar.setHomeButtonEnabled(true);
 		//      bar.setDisplayHomeAsUpEnabled(true);
 		//      bar.setDisplayShowCustomEnabled(true);
-		      bar.setDisplayShowHomeEnabled(true);
-		      bar.setDisplayShowTitleEnabled(false);
+		        bar.setDisplayShowHomeEnabled(true);
+		        bar.setDisplayShowTitleEnabled(false);
 			}
 		}
 	}

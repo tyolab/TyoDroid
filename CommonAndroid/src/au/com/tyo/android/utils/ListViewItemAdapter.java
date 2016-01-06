@@ -38,6 +38,10 @@ public class ListViewItemAdapter<ItemType> extends BaseAdapter {
 		if (items != null) 
 			this.items.addAll(items);
 	}
+	
+	public List<ItemType> getItems() {
+		return items;
+	}
 
 	@Override
 	public int getCount() {

@@ -8,9 +8,9 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 import java.util.regex.Pattern;
-
 import android.accounts.Account;
 import android.accounts.AccountManager;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -292,6 +292,7 @@ public class AndroidUtils {
 	 * @param context
 	 * @return
 	 */
+	@SuppressLint("NewApi")
 	public static List<String> getDeviceAccounts(Context context) {
 		ArrayList list = new ArrayList<String>();
 		Pattern emailPattern = Patterns.EMAIL_ADDRESS; // API level 8+
