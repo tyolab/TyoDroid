@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    
-    <integer name="page_font_size_default">18</integer>
-    
-    <integer name="div_width_max">420</integer>
-    <integer name="div_start_percent">30</integer>
-    
-</resources>

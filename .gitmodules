@@ -1,3 +1,12 @@
 [submodule "CommonUtils"]
 	path = CommonUtils
 	url = git@github.com:tyolab/CommonUtils.git
+[submodule "CommonAndroid"]
+	path = CommonAndroid
+	url = https://github.com/tyolab/CommonAndroid
+[submodule "CommonUiLib"]
+	path = CommonUiLib
+	url = https://github.com/tyolab/CommonUiLib
+[submodule "CommonAppLib"]
+	path = CommonAppLib
+	url = https://github.com/tyolab/CommonAppLib
