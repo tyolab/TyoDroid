@@ -10,3 +10,9 @@
 [submodule "CommonAppLib"]
 	path = CommonAppLib
 	url = https://github.com/tyolab/CommonAppLib
+[submodule "CommonServices"]
+	path = CommonServices
+	url = https://github.com/tyolab/CommonServices.git
+[submodule "CommonServicesDroid"]
+	path = CommonServicesDroid
+	url = https://github.com/tyolab/CommonServicesDroid.git
